@@ -251,13 +251,12 @@ tmux_conf_copy_to_os_clipboard=true
 # set indicator for keymap
 run-shell 'tmux set-environment -g tmux_keytable \
 	$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
-	then echo "OFF"; else echo "on"; fi)'
-if-shell "[[ $(tmux display -p '#{pane_synchronized}') -eq 1 ]]" \
-	'set-environment -g panes_synced "#[bg=red]#[fg=black]SYNCED#[default]"' \
-	'set-environment -g panes_synced "nosync"'
+	then echo 1; else echo 0; fi)'
 
 # add keymap indicator to statusline
-tmux_conf_theme_status_right=' #{panes_synced} #{tmux_keytable} \
+tmux_conf_theme_status_right=' \
+	#{?pane_synchronized,#[bg=red]#[fg=black] SYNCED #[default], nosync },\
+	#{?tmux_keytable,#[bg=red]#[fg=black] OFF #[default], on }\
 	#{prefix}#{pairing}, %R , %d %b | #{username}#{root} | #{hostname} '
 
 # add per pane title
@@ -279,15 +278,7 @@ bind-key -T copy-mode-vi 'v' send -X begin-selection
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
 # set sync turn statusline red if panes are synced
-#bind s set-window-option synchronize-panes\; display 'toggle sync'\; \
-#	if-shell "[[ $(tmux display -p '#{pane_synchronized}') -eq 1 ]]" \
-#	'set -g status-bg red' 'set -g status-bg "#080808"'
-
-bind s set-window-option synchronize-panes\;\
-	if-shell "[[ $(tmux display -p '#{pane_synchronized}') -eq 1 ]]" \
-	'set-environment -g panes_synced "#[bg=red]#[fg=black]SYNCED#[default]"' \
-	'set-environment -g panes_synced "nosync"'\;\
-	refresh-client -S\;\
+bind s set-window-option synchronize-panes\; refresh-client -S\;\
 
 
 # vim pane movement
@@ -332,17 +323,21 @@ bind -n M-K next-window
 
 # toogle keymap to work in nested remote tmux session
 bind -T root F12  \
-  set prefix None \;\
-  set key-table off \;\
-  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-  run-shell 'tmux set-environment -g tmux_keytable $(if [ "$(tmux show-option -qv key-table)" = "off" ]; then echo "OFF"; else echo "on"; fi)' \;\
-  refresh-client -S \;\
+	set prefix None \;\
+	set key-table off \;\
+	if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+	run-shell 'tmux set-environment -g tmux_keytable \
+		$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
+		then echo 1; else echo 0; fi)' \;\
+	refresh-client -S \;\
 
 bind -T off F12 \
-  set -u prefix \;\
-  set -u key-table \;\
-  run-shell 'tmux set-environment -g tmux_keytable $(if [ "$(tmux show-option -qv key-table)" = "off" ]; then echo "OFF"; else echo "on"; fi)' \;\
-  refresh-client -S
+	set -u prefix \;\
+	set -u key-table \;\
+	run-shell 'tmux set-environment -g tmux_keytable \
+		$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
+		then echo 1; else echo 0; fi)' \;\
+	refresh-client -S \;\
 
 # load settings for remote session
 if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux.conf.remote'
