@@ -254,10 +254,10 @@ run-shell 'tmux set-environment -g tmux_keytable \
 	then echo 1; else echo 0; fi)'
 
 # add keymap indicator to statusline
-tmux_conf_theme_status_right=' \
+tmux_conf_theme_status_right='#{prefix}#{pairing}\
 	#{?pane_synchronized,#[bg=red]#[fg=black] SYNCED #[default], nosync },\
 	#{?tmux_keytable,#[bg=red]#[fg=black] OFF #[default], on }\
-	#{prefix}#{pairing}, %R , %d %b | #{username}#{root} | #{hostname} '
+	, %R , %d %b | #{username}#{root} | #{hostname} '
 
 # add per pane title
 set -g pane-border-status top
