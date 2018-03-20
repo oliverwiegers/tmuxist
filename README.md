@@ -93,5 +93,5 @@ And of course all keymappings from [.tmux](https://github.com/gpakosz/.tmux)
 
 ## Configuration
 
-For local settings stick to .tmux.conf.local
-And for settings in ssh sessions only stick to .tmux.conf.remote
+- For local settings stick to `.tmux.conf.local`
+- And for settings in ssh sessions only stick to `.tmux.conf.remote`

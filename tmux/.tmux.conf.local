@@ -345,4 +345,4 @@ bind -T off F12 \
   refresh-client -S
 
 # load settings for remote session
-if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux/tmux.conf.remote'
+if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux.conf.remote'
