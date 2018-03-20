@@ -58,36 +58,36 @@ that tells you wether the keymap is turnded on or off.
 
 ## Keybindings
 
-`C-\` as prefix key
-`v` begin selection in visual mide
-`y` copy selection in visual mode
-`<prefix> s` toggle pane sync
-`Meta-h` select left pane
-`Meta-j` select lower pane
-`Meta-k` select above pane
-`Meta-l` select right pane
-`Meta-c` new window
-`Meta-w` enter window choose tree
-`Meta-x` kill pane
-`Meta-v` split window vertical
-`Meta--` split window horizontal
-`Meta-r` rename session
-`Meta-X` kill session
-`<prefix c` new session
-`<prefix X` kill session
-`Meta-s` enter session choose tree
-`Meta-1` select window 1
-`Meta-2` select window 2
-`Meta-3` select window 3
-`Meta-4` select window 4
-`Meta-5` select window 5
-`Meta-6` select window 6
-`Meta-7` select window 7
-`Meta-8` select window 8
-`Meta-9` select window 9
-`Meta-J` previous -window
-`Meta-K` next -window
-`F12` toogle keymap on/off (this only exists on local sessions)
+ - `C-\` as prefix key
+ - `v` begin selection in visual mide
+ - `y` copy selection in visual mode
+ - `<prefix> s` toggle pane sync
+ - `Meta-h` select left pane
+ - `Meta-j` select lower pane
+ - `Meta-k` select above pane
+ - `Meta-l` select right pane
+ - `Meta-c` new window
+ - `Meta-w` enter window choose tree
+ - `Meta-x` kill pane
+ - `Meta-v` split window vertical
+ - `Meta--` split window horizontal
+ - `Meta-r` rename session
+ - `Meta-X` kill session
+ - `<prefix c` new session
+ - `<prefix X` kill session
+ - `Meta-s` enter session choose tree
+ - `Meta-1` select window 1
+ - `Meta-2` select window 2
+ - `Meta-3` select window 3
+ - `Meta-4` select window 4
+ - `Meta-5` select window 5
+ - `Meta-6` select window 6
+ - `Meta-7` select window 7
+ - `Meta-8` select window 8
+ - `Meta-9` select window 9
+ - `Meta-J` previous -window
+ - `Meta-K` next -window
+ - `F12` toogle keymap on/off (this only exists on local sessions)
 
 And of course all keymappings from [.tmux](https://github.com/gpakosz/.tmux)
 
