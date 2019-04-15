@@ -44,8 +44,8 @@ tmux_conf_new_session_prompt=false
 tmux_conf_theme_24b_colour=false
 
 # window style
-tmux_conf_theme_window_fg='default'
-tmux_conf_theme_window_bg='default'
+#tmux_conf_theme_window_fg='default'
+#tmux_conf_theme_window_bg='default'
 
 # highlight focused pane (tmux >= 2.1), possible values are:
 #	- true
@@ -53,8 +53,8 @@ tmux_conf_theme_window_bg='default'
 tmux_conf_theme_highlight_focused_pane=true
 
 # focused pane colours:
-tmux_conf_theme_focused_pane_fg='default'
-tmux_conf_theme_focused_pane_bg='#392929'
+tmux_conf_theme_focused_pane_fg=$tmux_foreground
+tmux_conf_theme_focused_pane_bg=$tmux_background
 
 # pane border style, possible values are:
 #	- thin (default)
@@ -62,38 +62,38 @@ tmux_conf_theme_focused_pane_bg='#392929'
 tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
-tmux_conf_theme_pane_border='#444444'					# gray
-tmux_conf_theme_pane_active_border='#689d6a'			# light blue
+tmux_conf_theme_pane_border=$tmux_color8
+tmux_conf_theme_pane_active_border=$tmux_color9
 
 # pane indicator colours
-tmux_conf_theme_pane_indicator='#00afff'				# light blue
-tmux_conf_theme_pane_active_indicator='#00afff'			# light blue
+tmux_conf_theme_pane_indicator=$tmux_color3
+tmux_conf_theme_pane_active_indicator=$tmux_color15
 
 # status line style
-tmux_conf_theme_message_fg='#282828'					# black
-tmux_conf_theme_message_bg='#d79921'					# yellow
+tmux_conf_theme_message_fg=$tmux_background
+tmux_conf_theme_message_bg=$tmux_foreground
 mux_conf_theme_message_attr='bold'
 
 # status line command style (<prefix> : Escape)
-tmux_conf_theme_message_command_fg='#ffff00'			# yellow
-tmux_conf_theme_message_command_bg='#000000'			# black
+tmux_conf_theme_message_command_fg=$tmux_color7
+tmux_conf_theme_message_command_bg=$tmux_backgroud
 tmux_conf_theme_message_command_attr='bold'
 
 # window modes style
-tmux_conf_theme_mode_fg='#000000'						# black
-tmux_conf_theme_mode_bg='#ffff00'						# yellow
+tmux_conf_theme_mode_fg=$tmux_background
+tmux_conf_theme_mode_bg=$tmux_foreground
 tmux_conf_theme_mode_attr='bold'
 
 # status line style
-tmux_conf_theme_status_fg='#8a8a8a'						# light gray
-tmux_conf_theme_status_bg='#080808'						# dark gray
+tmux_conf_theme_status_fg=$tmux_color15
+tmux_conf_theme_status_bg=$tmux_background
 tmux_conf_theme_status_attr='none'
 
 # window status style
 #	- built-in variables are:
 #	  - #{circled_window_index}
-tmux_conf_theme_window_status_fg='#8a8a8a'				# light gray
-tmux_conf_theme_window_status_bg='#080808'				# dark gray
+tmux_conf_theme_window_status_fg=$tmux_color15
+tmux_conf_theme_window_status_bg=$tmux_background
 tmux_conf_theme_window_status_attr='none'
 mux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#{circled_window_index} #W'
@@ -102,26 +102,26 @@ mux_conf_theme_window_status_format='#I #W'
 # window current status style
 #	- built-in variables are:
 #	  - #{circled_window_index}
-tmux_conf_theme_window_status_current_fg='#282828'		# black
-tmux_conf_theme_window_status_current_bg='#689d6a'		# light blue
+tmux_conf_theme_window_status_current_fg=$tmux_color0
+tmux_conf_theme_window_status_current_bg=$tmux_color1
 tmux_conf_theme_window_status_current_attr='bold'
 tmux_conf_theme_window_status_current_format='#I #W'
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
 #tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
 
 # window activity status style
-tmux_conf_theme_window_status_activity_fg='default'
-tmux_conf_theme_window_status_activity_bg='default'
+tmux_conf_theme_window_status_activity_fg=$tmux_foreground
+tmux_conf_theme_window_status_activity_bg=$tmux_background
 tmux_conf_theme_window_status_activity_attr='underscore'
 
 # window bell status style
-tmux_conf_theme_window_status_bell_fg='#ffff00'			# yellow
-tmux_conf_theme_window_status_bell_bg='default'
+tmux_conf_theme_window_status_bell_fg=$tmux_foreground
+tmux_conf_theme_window_status_bell_bg=$tmux_background
 tmux_conf_theme_window_status_bell_attr='blink,bold'
 
 # window last status style
-tmux_conf_theme_window_status_last_fg='#689d6a'			# light blue
-tmux_conf_theme_window_status_last_bg='default'
+tmux_conf_theme_window_status_last_fg=$tmux_color3
+tmux_conf_theme_window_status_last_bg=$tmux_background
 tmux_conf_theme_window_status_last_attr='none'
 
 # status left/right sections separators
@@ -161,14 +161,14 @@ tmux_conf_theme_status_left=' ❐ #S '
 tmux_conf_theme_status_right=' #{prefix}#{pairing}, %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#ebdbb2,#282828,#e4e4e4'
-tmux_conf_theme_status_left_bg='#928374,#ff00af,#98971a'
+tmux_conf_theme_status_left_fg=$tmux_foreground
+tmux_conf_theme_status_left_bg=$tmux_color8
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#8a8a8a,#282828,#ebdbb2'
-tmux_conf_theme_status_right_bg='#080808,#98971a,#928374'
-tmux_conf_theme_status_right_attr='none,none,bold'
+tmux_conf_theme_status_right_fg=$tmux_color0
+tmux_conf_theme_status_right_bg=$tmux_color3
+tmux_conf_theme_status_right_attr='bold,bold,bold'
 
 # pairing indicator
 tmux_conf_theme_pairing='👓 '		   # U+1F453
@@ -255,9 +255,9 @@ run-shell 'tmux set-environment -g tmux_keytable \
 
 # add keymap indicator to statusline
 tmux_conf_theme_status_right='#{prefix}#{pairing}\
-	#{?pane_synchronized,#[bg=red]#[fg=black] SYNCED #[default], nosync },\
-	#{?tmux_keytable,#[bg=red]#[fg=black] OFF #[default], on }\
-	, %R , %d %b | #{username}#{root} | #{hostname} '
+	#{?pane_synchronized,#[bg=white]#[fg=red] SYNCED #[default], nosync },\
+	#{?tmux_keytable,#[bg=white]#[fg=red] OFF #[default], on }\
+	, %R , %d %b|#{username}#{root}|#{hostname} '
 
 # add per pane title
 set -g pane-border-status top
@@ -265,10 +265,12 @@ set -g pane-border-status top
 # if local session attach status line to bottom
 set-option -g status-position bottom
 
+set -s escape-time 500
+
 # keybindings
 
 # leader key
-unbind-key C-a
+set -g prefix2 'None'
 set -g prefix 'C-\'
 bind-key 'C-\' send-prefix
 
@@ -280,46 +282,14 @@ bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 # set sync turn statusline red if panes are synced
 bind s set-window-option synchronize-panes\; refresh-client -S\;\
 
-
-# vim pane movement
-bind -n M-h select-pane -L
-bind -n M-j select-pane -D
-bind -n M-k select-pane -U
-bind -n M-l select-pane -R
-
-# window management
-bind -n M-c new-window
-bind -n M-w choose-tree -w
-
-# pane management
-bind -n M-x kill-pane
+bind x kill-pane
 unbind-key '"'
-bind -n M-v split-window -h
+bind v split-window -h
 unbind-key '%'
-bind -n M-- split-window -v
+bind - split-window -v
 
-# sesseion management
-bind -n M-r command-prompt 'rename-session "%%"'
-bind -n M-X kill-session
-unbind c
-bind c new-session
-bind X kill-session
-bind -n M-s choose-tree -s
-set -s escape-time 500
-
-# window navigation
-bind -n M-1 select-window -t 1
-bind -n M-2 select-window -t 2
-bind -n M-3 select-window -t 3
-bind -n M-4 select-window -t 4
-bind -n M-5 select-window -t 5
-bind -n M-6 select-window -t 6
-bind -n M-7 select-window -t 7
-bind -n M-8 select-window -t 8
-bind -n M-9 select-window -t 9
-
-bind -n M-J previous-window
-bind -n M-K next-window
+## session management
+bind S choose-tree -s
 
 # toogle keymap to work in nested remote tmux session
 bind -T root F12  \
