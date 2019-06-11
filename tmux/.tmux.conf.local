@@ -1,7 +1,5 @@
 # https://github.com/gpakosz/.tmux
-# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license, #		  without any warranty.
-#		  Copyright 2012— Gregory Pakosz (@gpakosz).
-
+# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license, #		  without any warranty.  #		  Copyright 2012— Gregory Pakosz (@gpakosz).  
 
 # -- navigation ----------------------------------------------------------------
 
@@ -265,7 +263,7 @@ set -g pane-border-status top
 # if local session attach status line to bottom
 set-option -g status-position bottom
 
-set -s escape-time 500
+#set -s escape-time 500
 
 # keybindings
 
