@@ -263,7 +263,8 @@ set -g pane-border-status top
 # if local session attach status line to bottom
 set-option -g status-position bottom
 
-#set -s escape-time 500
+set -s escape-time 1
+set -s repeat-time 200
 
 # keybindings
 
