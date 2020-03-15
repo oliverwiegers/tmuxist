@@ -1,12 +1,12 @@
 # https://github.com/gpakosz/.tmux
-# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license, #		  without any warranty.  #		  Copyright 2012— Gregory Pakosz (@gpakosz).  
+# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license, #         without any warranty.  #        Copyright 2012— Gregory Pakosz (@gpakosz).  
 
 # -- navigation ----------------------------------------------------------------
 
 # if you're running tmux within iTerm2
-#	- and tmux is 1.9 or 1.9a
-#	- and iTerm2 is configured to let option key act as +Esc
-#	- and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
+#   - and tmux is 1.9 or 1.9a
+#   - and iTerm2 is configured to let option key act as +Esc
+#   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
 
@@ -14,23 +14,23 @@
 # -- windows & pane creation ---------------------------------------------------
 
 # new window retains current path, possible values are:
-#	- true
-#	- false (default)
+#   - true
+#   - false (default)
 tmux_conf_new_window_retain_current_path=false
 
 # new pane retains current path, possible values are:
-#	- true (default)
-#	- false
+#   - true (default)
+#   - false
 tmux_conf_new_pane_retain_current_path=true
 
 # new pane tries to reconnect ssh sessions (experimental), possible values are:
-#	- true
-#	- false (default)
+#   - true
+#   - false (default)
 tmux_conf_new_pane_reconnect_ssh=false
 
 # prompt for session name when creating a new session, possible values are:
-#	- true
-#	- false (default)
+#   - true
+#   - false (default)
 tmux_conf_new_session_prompt=false
 
 
@@ -46,8 +46,8 @@ tmux_conf_theme_24b_colour=false
 #tmux_conf_theme_window_bg='default'
 
 # highlight focused pane (tmux >= 2.1), possible values are:
-#	- true
-#	- false (default)
+#   - true
+#   - false (default)
 tmux_conf_theme_highlight_focused_pane=false
 
 # focused pane colours:
@@ -55,8 +55,8 @@ tmux_conf_theme_focused_pane_fg=$tmux_foreground
 tmux_conf_theme_focused_pane_bg=$tmux_background
 
 # pane border style, possible values are:
-#	- thin (default)
-#	- fat
+#   - thin (default)
+#   - fat
 tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
@@ -88,8 +88,8 @@ tmux_conf_theme_status_bg=$tmux_background
 tmux_conf_theme_status_attr='none'
 
 # window status style
-#	- built-in variables are:
-#	  - #{circled_window_index}
+#   - built-in variables are:
+#     - #{circled_window_index}
 tmux_conf_theme_window_status_fg=$tmux_color15
 tmux_conf_theme_window_status_bg=$tmux_background
 tmux_conf_theme_window_status_attr='none'
@@ -98,8 +98,8 @@ mux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag,🔍,}'
 
 # window current status style
-#	- built-in variables are:
-#	  - #{circled_window_index}
+#   - built-in variables are:
+#     - #{circled_window_index}
 tmux_conf_theme_window_status_current_fg=$tmux_color0
 tmux_conf_theme_window_status_current_bg=$tmux_color1
 tmux_conf_theme_window_status_current_attr='bold'
@@ -128,33 +128,33 @@ tmux_conf_theme_window_status_last_attr='none'
 #tmux_conf_theme_right_separator_main=''
 #tmux_conf_theme_right_separator_sub='|'
 tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install Powerline
-tmux_conf_theme_left_separator_sub=''	 #	 you only need fonts patched with
-tmux_conf_theme_right_separator_main='' #	 Powerline symbols or the standalone
-tmux_conf_theme_right_separator_sub=''  #	 PowerlineSymbols.otf font
+tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 
 # show wether key table is off or not
 # status left/right content:
-#	- separate main sections with '|'
-#	- separate subsections with ','
-#	- built-in variables are:
-#	  - #{battery_bar}
-#	  - #{battery_hbar}
-#	  - #{battery_percentage}
-#	  - #{battery_status}
-#	  - #{battery_vbar}
-#	  - #{circled_session_name}
-#	  - #{hostname_ssh}
-#	  - #{hostname}
-#	  - #{loadavg}
-#	  - #{pairing}
-#	  - #{prefix}
-#	  - #{root}
-#	  - #{uptime_d}
-#	  - #{uptime_h}
-#	  - #{uptime_m}
-#	  - #{uptime_s}
-#	  - #{username}
-#	  - #{username_ssh}
+#   - separate main sections with '|'
+#   - separate subsections with ','
+#   - built-in variables are:
+#     - #{battery_bar}
+#     - #{battery_hbar}
+#     - #{battery_percentage}
+#     - #{battery_status}
+#     - #{battery_vbar}
+#     - #{circled_session_name}
+#     - #{hostname_ssh}
+#     - #{hostname}
+#     - #{loadavg}
+#     - #{pairing}
+#     - #{prefix}
+#     - #{root}
+#     - #{uptime_d}
+#     - #{uptime_h}
+#     - #{uptime_m}
+#     - #{uptime_s}
+#     - #{username}
+#     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S '
 tmux_conf_theme_status_right=' #{prefix}#{pairing}, %R , %d %b | #{username}#{root} | #{hostname} '
 
@@ -169,15 +169,16 @@ tmux_conf_theme_status_right_bg=$tmux_color3
 tmux_conf_theme_status_right_attr='bold,bold,bold'
 
 # pairing indicator
-tmux_conf_theme_pairing='👓 '		   # U+1F453
+tmux_conf_theme_pairing='👓 '          # U+1F453
 tmux_conf_theme_pairing_fg='none'
 tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
 # prefix indicator
-tmux_conf_theme_prefix='⌨ '			   # U+2328
+tmux_conf_theme_prefix='⌨ '            # U+2328
 tmux_conf_theme_prefix_fg='none'
-tmux_conf_theme_prefix_bg='none' tmux_conf_theme_prefix_attr='none'
+tmux_conf_theme_prefix_bg='none'
+tmux_conf_theme_prefix_attr='none'
 
 # root indicator
 tmux_conf_theme_root='!'
@@ -190,48 +191,48 @@ tmux_conf_battery_bar_symbol_empty='◻'
 #tmux_conf_battery_bar_symbol_empty='·'
 
 # battery bar length (in number of symbols), possible values are:
-#	- auto
-#	- a number, e.g. 5
+#   - auto
+#   - a number, e.g. 5
 tmux_conf_battery_bar_length='auto'
 
 # battery bar palette, possible values are:
-#	- gradient (default)
-#	- heat
-#	- 'colour_full_fg,colour_empty_fg,colour_bg'
+#   - gradient (default)
+#   - heat
+#   - 'colour_full_fg,colour_empty_fg,colour_bg'
 tmux_conf_battery_bar_palette='gradient'
 #tmux_conf_battery_bar_palette='#d70000,#e4e4e4,#000000'   # red, white, black
 
 # battery hbar palette, possible values are:
-#	- gradient (default)
-#	- heat
-#	- 'colour_low,colour_half,colour_full'
+#   - gradient (default)
+#   - heat
+#   - 'colour_low,colour_half,colour_full'
 tmux_conf_battery_hbar_palette='gradient'
 #tmux_conf_battery_hbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
 
 # battery vbar palette, possible values are:
-#	- gradient (default)
-#	- heat
-#	- 'colour_low,colour_half,colour_full'
+#   - gradient (default)
+#   - heat
+#   - 'colour_low,colour_half,colour_full'
 tmux_conf_battery_vbar_palette='gradient'
 #tmux_conf_battery_vbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
 
 # symbols used to indicate whether battery is charging or discharging
-tmux_conf_battery_status_charging='↑'		# U+2191
-tmux_conf_battery_status_discharging='↓'	# U+2193
-#tmux_conf_battery_status_charging='⚡ '	# U+26A1
-#tmux_conf_battery_status_charging='🔌 '	# U+1F50C
+tmux_conf_battery_status_charging='↑'       # U+2191
+tmux_conf_battery_status_discharging='↓'    # U+2193
+#tmux_conf_battery_status_charging='⚡ '    # U+26A1
+#tmux_conf_battery_status_charging='🔌 '    # U+1F50C
 #tmux_conf_battery_status_discharging='🔋 ' # U+1F50B
 
 # clock style
-tmux_conf_theme_clock_colour='#00afff'	# light blue
+tmux_conf_theme_clock_colour='#00afff'  # light blue
 tmux_conf_theme_clock_style='24'
 
 
 # -- clipboard -----------------------------------------------------------------
 
 # in copy mode, copying selection also copies to the OS clipboard
-#	- true
-#	- false (default)
+#   - true
+#   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
 tmux_conf_copy_to_os_clipboard=true
@@ -248,14 +249,14 @@ tmux_conf_copy_to_os_clipboard=true
 
 # set indicator for keymap
 run-shell 'tmux set-environment -g tmux_keytable \
-	$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
-	then echo 1; else echo 0; fi)'
+    $(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
+    then echo 1; else echo 0; fi)'
 
 # add keymap indicator to statusline
 tmux_conf_theme_status_right='#{prefix}#{pairing}\
-	#{?pane_synchronized,#[bg=white]#[fg=red] SYNCED #[default], nosync },\
-	#{?tmux_keytable,#[bg=white]#[fg=red] OFF #[default], on }\
-	, %R , %d %b|#{username}#{root}|#{hostname} '
+    #{?pane_synchronized,#[bg=white]#[fg=red] SYNCED #[default], nosync },\
+    #{?tmux_keytable,#[bg=white]#[fg=red] OFF #[default], on }\
+    , %R , %d %b|#{username}#{root}|#{hostname} '
 
 # add per pane title
 set -g pane-border-status top
@@ -264,7 +265,6 @@ set -g pane-border-status top
 set-option -g status-position bottom
 
 set -s escape-time 1
-set -s repeat-time 200
 
 # keybindings
 
@@ -292,21 +292,21 @@ bind S choose-tree -s
 
 # toogle keymap to work in nested remote tmux session
 bind -T root F12  \
-	set prefix None \;\
-	set key-table off \;\
-	if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-	run-shell 'tmux set-environment -g tmux_keytable \
-		$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
-		then echo 1; else echo 0; fi)' \;\
-	refresh-client -S \;\
+    set prefix None \;\
+    set key-table off \;\
+    if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+    run-shell 'tmux set-environment -g tmux_keytable \
+        $(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
+        then echo 1; else echo 0; fi)' \;\
+    refresh-client -S \;\
 
 bind -T off F12 \
-	set -u prefix \;\
-	set -u key-table \;\
-	run-shell 'tmux set-environment -g tmux_keytable \
-		$(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
-		then echo 1; else echo 0; fi)' \;\
-	refresh-client -S \;\
+    set -u prefix \;\
+    set -u key-table \;\
+    run-shell 'tmux set-environment -g tmux_keytable \
+        $(if [ "$(tmux show-option -qv key-table)" = "off" ]; \
+        then echo 1; else echo 0; fi)' \;\
+    refresh-client -S \;\
 
 # load settings for remote session
 if-shell 'test -n "$SSH_CLIENT"' 'source-file ~/.tmux.conf.remote'
