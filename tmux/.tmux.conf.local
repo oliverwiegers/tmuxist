@@ -270,8 +270,8 @@ set -s escape-time 1
 
 # leader key
 set -g prefix2 'None'
-set -g prefix 'C-\'
-bind-key 'C-\' send-prefix
+set -g prefix 'C-f'
+bind-key 'C-f' send-prefix
 
 # vi mode
 setw -g mode-keys vi
