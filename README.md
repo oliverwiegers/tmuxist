@@ -19,7 +19,7 @@ gpakosz's config a try.
 In my setting the colors are tweaked to look like
 [gruvbox](https://github.com/morhetz/gruvbox).
 
-![Screenshot](tmux.png)
+![Screenshot](shots/tmux.png)
 
 ## Usage
 
