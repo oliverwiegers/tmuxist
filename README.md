@@ -2,27 +2,36 @@
 
 > Tmux for work
 
-*Disclaimer:* The main features and main work are done by
-[gpakosz](https://github.com/gpakosz/.tmux). I only added a few features, so the
-config fits my workflow.
-Shoutout to [@gpakosz](https://twitter.com/gpakosz).
+*Disclaimer:* I used this -> [gpakosz/.tmux](https://github.com/gpakosz/.tmux)
+config for a while. I manly use tmux for remote server administration so I don't
+need fancy stuff like battery charging. If this is what you are looking for give
+gpakosz's config a try.
 
 ## Features
 
-- Red turning indicator if panes are synced
-- Metakey navigation
- - I use iTerm2 and bound ESC to Capslock and use +ESC as metakey
-- Nested remote session aware
-- Per pane title
-- Vi mode
-- Highligt focused pane
+- Pane sync indicator.
+- Hostname / Username indicator.
+    - Turns red if User is root.
+- Nested remote session awareness.
+    - Local keymap can be disabled to issue commands to remote session.
+- Vi mode.
 
 In my setting the colors are tweaked to look like
 [gruvbox](https://github.com/morhetz/gruvbox).
 
-And all features from [.tmux](https://github.com/gpakosz/.tmux)
+![Screenshot](tmux.png)
 
-![Screenshot](screenshot.png)
+## Usage
+
+To work with colors correctly use `tmux -2`.
+
+## Build and Run
+
+```
+docker build -t tmux_test .
+docker run -v "${PWD}/:/root" -it tmux_test
+```
+
 
 ## Installation
 
@@ -56,42 +65,15 @@ local system.
 On the left side of status-right left from the sync indicator is an indicator 
 that tells you wether the keymap is turnded on or off.
 
-## Keybindings
-
- - `C-\` as prefix key
- - `v` begin selection in visual mide
- - `y` copy selection in visual mode
- - `<prefix> s` toggle pane sync
- - `Meta-h` select left pane
- - `Meta-j` select lower pane
- - `Meta-k` select above pane
- - `Meta-l` select right pane
- - `Meta-c` new window
- - `Meta-w` enter window choose tree
- - `Meta-x` kill pane
- - `Meta-v` split window vertical
- - `Meta--` split window horizontal
- - `Meta-r` rename session
- - `Meta-X` kill session
- - `<prefix c` new session
- - `<prefix X` kill session
- - `Meta-s` enter session choose tree
- - `Meta-1` select window 1
- - `Meta-2` select window 2
- - `Meta-3` select window 3
- - `Meta-4` select window 4
- - `Meta-5` select window 5
- - `Meta-6` select window 6
- - `Meta-7` select window 7
- - `Meta-8` select window 8
- - `Meta-9` select window 9
- - `Meta-J` previous -window
- - `Meta-K` next -window
- - `F12` toogle keymap on/off (this only exists on local sessions)
-
-And of course all keymappings from [.tmux](https://github.com/gpakosz/.tmux)
-
 ## Configuration
 
 - For local settings stick to `.tmux.conf.local`
-- And for settings in ssh sessions only stick to `.tmux.conf.remote`
+- And for settings in ssh sessions only stick to `.tmux.conf.remote` 
+
+## TODO
+
+- [x] Hostname change per pane.
+- [x] Username change per pane.
+- [x] URL Grabber / urlview
+- [ ] Copy Buffers
+- [x] Change color if user is `root`.

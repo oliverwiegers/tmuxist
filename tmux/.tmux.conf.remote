@@ -1,8 +1,3 @@
-# https://github.com/chrootzius/.tmuxist
-# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
-# without any warranty.
-# Copyright 2018 — Oliver Wiegers (@chrootzius).
-
 # unbind toggle key for keymaps
 unbind -T root F12
 unbind -T off F12
@@ -15,3 +10,13 @@ set-option -g status-position top
 # See .ssh/rc for socket linking
 set -g update-environment -r
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
+# Status bar right.
+# Shows wether panes are in sync or not.
+set-option -g status-right "\
+#[fg=colour7,bold, bg=colour0]#{?pane_synchronized,  ,}\
+#[fg=colour3, bg=colour0]#{?pane_synchronized,SYNCED,}\
+#[fg=#{?tmux_user_root,colour1,colour7},nobold, bg=colour0] \
+#[fg=colour0, bg=#{?tmux_user_root,colour1,colour7}] #(cut -c3- ~/.tmux.conf | sh -s _username)\
+#[fg=colour8, bg=#{?tmux_user_root,colour1,colour7}] \
+#[fg=colour0, bg=colour8] #(cut -c3- ~/.tmux.conf | sh -s _hostname) "
