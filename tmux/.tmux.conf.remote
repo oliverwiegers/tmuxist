@@ -1,18 +1,28 @@
-# unbind toggle key for keymaps
+#     ____  ________  _______  ____________   __________  _   __________________
+#    / __ \/ ____/  |/  / __ \/_  __/ ____/  / ____/ __ \/ | / / ____/  _/ ____/
+#   / /_/ / __/ / /|_/ / / / / / / / __/    / /   / / / /  |/ / /_   / // / __  
+#  / _, _/ /___/ /  / / /_/ / / / / /___   / /___/ /_/ / /|  / __/ _/ // /_/ /  
+# /_/ |_/_____/_/  /_/\____/ /_/ /_____/   \____/\____/_/ |_/_/   /___/\____/   
+
+# Use this file to change behavior of remote session.
+
+# Unbind toggle key for keymaps.
 unbind -T root F12
 unbind -T off F12
 
-# change status position
+# Change status position.
 set-option -g status-position top
 
 # https://gist.github.com/admackin/4507371
-# fix ssh agent when tmux is detached
-# See .ssh/rc for socket linking
+# Fix ssh agent when tmux is detached.
+# See .ssh/rc for socket linking.
 set -g update-environment -r
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
 # Status bar right.
 # Shows wether panes are in sync or not.
+# Is different to local status bar because it does not show the indicator for
+# the keymap which shows wether or not remote keymap is active.
 set-option -g status-right "\
 #[fg=colour7,bold, bg=colour0]#{?pane_synchronized,  ,}\
 #[fg=colour3, bg=colour0]#{?pane_synchronized,SYNCED,}\
