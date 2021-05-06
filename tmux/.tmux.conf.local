@@ -33,7 +33,8 @@ run-shell ~/.tmuxist/plugins/tmux-continuum/continuum.tmux
 
 # Ressurect.
 set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-processes 'ssh newsboat bluetoothctl'
+set -g @resurrect-processes 'ssh newsboat bluetoothctl neomutt'
+set -g @resurrect-hook-post-save-all 'remove_old_tmux_sessions.sh'
 
 # Continuum.
 set -g @continuum-restore 'on'
