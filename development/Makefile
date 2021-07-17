@@ -1,4 +1,5 @@
 dev:
+	cp ../tmux/.tmux.conf ./tmux.config
 	cut -c3- ./tmux.config | sed '0,/^EOF$$/d' > ./custom_functions.sh
 	sed '1,/^# EOF$$/!d' ./tmux.config > ./tmux.conf
 

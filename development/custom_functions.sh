@@ -2,6 +2,7 @@
 # exit the script if any statement returns a non-true return value
 set -e
 
+eval "$(cut -c3- ~/.tmux.conf.local)"
 _read_function_overrides() {
     eval "$(cut -c3- ~/.tmux.conf.local)"
 }
@@ -68,7 +69,7 @@ _tty_stats() {
 }
 
 _username() {
-    tty=${1:-}
+    tty=${1:-$(tmux display -p '#{pane_tty}')}
     if ! type _username_override > /dev/null 2>&1; then
         tty_stats="$(_tty_stats "${tty}")"
         username="${tty_stats#*:}"
@@ -78,19 +79,28 @@ _username() {
             ssh_stats="$(_ssh_stats "${cmdline}")"
             printf '%s' "${ssh_stats%%:*}"
         else
+            if [ "${username}" = "caffeinate" ];then
+                username="$(hostname)"
+            fi
             printf '%s' "${username}"
         fi
     else
-        _username_override
+        _username_override "${tty}"
+    fi
+    if [ "${username}" = "root" ]; then
+        tmux set-environment -g tmux_user_root 'root'
+    else
+        tmux set-environment -g tmux_user_root ''
     fi
 }
 
 _hostname() {
-    tty=${1:-}
+    tty=${1:-$(tmux display -p '#{pane_tty}')}
     if ! type _hostname_override > /dev/null 2>&1; then
         tty_stats="$(_tty_stats "${tty}")"
         cmdline="${tty_stats#*:}"
         cmdline="${cmdline#*:}"
+        printf 'nope'
         if _is_ssh "${cmdline}";then
             ssh_stats="$(_ssh_stats "${cmdline}")"
             printf '%s' "${ssh_stats##*:}"
@@ -98,7 +108,7 @@ _hostname() {
             printf '%s' "$(uname -n)"
         fi
     else
-        _hostname_override
+        _hostname_override "${tty}"
     fi
 }
 
