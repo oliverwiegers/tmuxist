@@ -9,12 +9,19 @@ gpakosz's config a try.
 
 ## Features
 
+### Enabled TMUX Features
+
+- Emacs bindings in command mode.
+- Vi mode.
+
+### Custom Features
+
+- URLView to open URLs in Browser
 - Pane sync indicator.
 - Hostname / Username indicator.
     - Turns red if User is root.
 - Nested remote session awareness.
     - Local keymap can be disabled to issue commands to remote session.
-- Vi mode.
 
 In my setting the colors are tweaked to look like
 [gruvbox](https://github.com/morhetz/gruvbox).
