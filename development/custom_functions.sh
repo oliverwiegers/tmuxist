@@ -190,18 +190,27 @@ _battery_stats() {
     done
     
     # Use xargs to strip whitespace.
-    printf '%s' "$(echo "${output}" | xargs)"
+    printf '%s' "$(printf '%s' "${output}" | xargs)"
 }
 
 _pulseaudio_stats() {
-    output=''
-    volume="$(pamixer --get-volume || true)"
+    if command -v pactl > /dev/null 2>&1; then
+		output=''
+		sink_id="$(pactl list short sinks \
+			| grep "$(pactl get-default-sink)" \
+			| awk '{print $1}')"
+		muted="$(pactl list sinks \
+			| SINK="${sink_id}" perl -000ne 'if(/#$ENV{SINK}/){/(Mute:.*)/; print "$1\n"}' \
+			| awk '{print $2}')"
+		volume="$(pactl list sinks \
+			| SINK="${sink_id}" perl -000ne 'if(/#$ENV{SINK}/){/(Volume:.*)/; print "$1\n"}' \
+			| grep -oE '[0-9]{,3}%' \
+			| uniq)"
 
-    if command -v pamixer > /dev/null 2>&1; then
         # Display delimiter when audio is present.
         tmux set-environment -g has_pulseaudio 1
 
-        if [ "$(pamixer --get-volume-human)" = "muted" ]; then
+        if [ "${muted}" = 'yes' ]; then
             output_icon=''
             output="${output_icon}"
         else
@@ -215,7 +224,7 @@ _pulseaudio_stats() {
             output="${volume} ${output_icon}"
         fi
 
-        printf '%s' "${output}"
+		printf '%s' "${output}"
     else
         # Remove delimiter when no audio is present.
         tmux set-environment -g has_pulseaudio 0
@@ -223,40 +232,48 @@ _pulseaudio_stats() {
 }
 
 _network_stats() {
-    interfaces="$(\
-        find /sys/class/net/ -type l \
-        | rev \
-        | cut -d '/' -f 1 \
-        | rev \
-        )"
-    output='No network!'
-    wifi_icon=''
-    ethernet_icon=''
-    
-    for interface in ${interfaces}; do
-        interface_path="/sys/class/net/${interface}"
-        devtype="$(grep DEVTYPE "${interface_path}/uevent" | cut -d '=' -f 2)"
-        status="$(cat "${interface_path}/carrier")"
-        if [ "${devtype}" = 'wlan' ] || [ "${devtype}"  = 'ethernet' ]; then
-            if [ "${status}" -eq 1 ]; then
-                # Display delimiter when no network is online.
-                tmux set-environment -g has_network 1
+	interfaces="$(\
+		find /sys/class/net/ -type l \
+		| rev \
+		| cut -d '/' -f 1 \
+		| rev \
+		)"
+	output='No network!'
+	wifi_icon=''
+	ethernet_icon=''
+	
+	for interface in ${interfaces}; do
+		if ! ip link show "${interface}" | grep -q DOWN; then
+			interface_path="/sys/class/net/${interface}"
+			devtype="$(grep DEVTYPE "${interface_path}/uevent" | cut -d '=' -f 2)"
+			status="$(cat "${interface_path}/carrier")" || true
+			if [ "${devtype}" = 'wlan' ] \
+				|| [ "${devtype}"  = 'ethernet' ] \
+				|| [ "${devtype}"  = 'wwan' ] ; then
 
-                ip="$(ip addr show "${interface}" \
-                    | awk '/inet [1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}/ {print $2}' \
-                    | cut -d '/' -f 1 \
-                    )"
-                if echo "${interface}" | grep -qE '^(wlp)'; then
-                    output="${ip} ${wifi_icon}"
-                elif echo "${interface}" | grep -qE '^(enp)'; then
-                    output=${ip} "${ethernet_icon}"
-                fi
-            fi
-        fi
-    done
-
-    # Use xargs to strip whitespace.
-    printf '%s' "$(echo "${output}" | xargs)"
+				if [ "${status}" -eq 1 ]; then
+					# Display delimiter when no network is online.
+					tmux set-environment -g has_network 1
+	
+					ip="$(ip addr show "${interface}" \
+						| grep -E 'inet [1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}' \
+						| awk '{print $2}' \
+						| cut -d '/' -f 1 \
+						)"
+					if printf '%s' "${devtype}" | grep -q 'wlan'; then
+						output="${ip} ${wifi_icon}"
+					elif printf '%s' "${devtype}" | grep -q 'wwan'; then
+						output="${ip} ${wifi_icon}"
+					elif printf '%s' "${devtype}" | grep -q 'ethernet'; then
+						output=${ip} "${ethernet_icon}"
+					fi
+				fi
+			fi
+		fi
+	done
+	
+	# Use xargs to strip whitespace.
+	printf '%s' "$(printf '%s'  "${output}" | xargs)"
 }
 
 "$@"
