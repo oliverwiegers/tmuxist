@@ -122,4 +122,141 @@ _urlview() {
     fi
 }
 
+_battery_stats() {
+    if ! [ -d "$HOME/.cache" ]; then
+        mkdir -p "$HOME/.cache"
+    fi
+
+    _cleanup_tmp() {
+        percent="$1"
+        tmp_file_path="$HOME/.cache/tmux_battery_alert_${percent}"
+        if [ -f "${tmp_file_path}" ]; then
+            rm "${tmp_file_path}"
+        fi
+    }
+
+    batteries="$(\
+        find /sys/class/power_supply/ -name 'BAT*' \
+        | rev \
+        | cut -d '/' -f 1 \
+        | rev \
+        )"
+    output=''
+    output_icon=''
+    for battery in ${batteries}; do
+        battery_path="/sys/class/power_supply/${battery}"
+        status="$(cat "${battery_path}/status")"
+        capacity="$(cat "${battery_path}/capacity")"
+    
+        if ! [ "${status}" = 'Discharging' ]; then
+            output_icon=''
+            _cleanup_tmp "*"
+        else
+            if [ "${capacity}" -le 100 ]; then
+                output_icon=''
+                _cleanup_tmp "*"
+            elif [ "${capacity}" -lt 80 ]; then
+                output_icon=''
+                _cleanup_tmp "*"
+            elif [ "${capacity}" -lt 50 ]; then
+                output_icon=''
+                _cleanup_tmp "*"
+            elif [ "${capacity}" -lt 15 ]; then
+                output_icon=''
+                _cleanup_tmp "5"
+                if ! [ -f "$HOME/.cache/tmux_battery_alert_15" ]; then
+                    if command -v notify-send > /dev/null 2>&1; then
+                        ffplay -f lavfi -i "sine=frequency=100:duration=0.1" \
+                            -autoexit -nodisp > /dev/null 2>&1
+                        notify-send "Alert!" "Battery is below 15%."
+                        touch "$HOME/.cache/tmux_battery_alert_15"
+                    fi
+                fi
+            elif [ "${capacity}" -lt 5 ]; then
+                output_icon=''
+                _cleanup_tmp "15"
+                if ! [ -f "$HOME/.cache/tmux_battery_alert_5" ]; then
+                    if command -v notify-send > /dev/null 2>&1; then
+                        ffplay -f lavfi -i "sine=frequency=100:duration=0.1" \
+                            -autoexit -nodisp > /dev/null 2>&1
+                        notify-send "Alert!" "Battery is below 5%."
+                        touch "$HOME/.cache/tmux_battery_alert_5"
+                    fi
+                fi
+            fi
+        fi
+    
+        output="${output} ${capacity} ${output_icon}"
+    done
+    
+    # Use xargs to strip whitespace.
+    printf '%s' "$(echo "${output}" | xargs)"
+}
+
+_pulseaudio_stats() {
+    output=''
+    volume="$(pamixer --get-volume || true)"
+
+    if command -v pamixer > /dev/null 2>&1; then
+        # Display delimiter when audio is present.
+        tmux set-environment -g has_pulseaudio 1
+
+        if [ "$(pamixer --get-volume-human)" = "muted" ]; then
+            output_icon=''
+            output="${output_icon}"
+        else
+            if [ "${volume}" -lt 5 ]; then
+                output_icon=''
+            elif [ "${volume}" -lt 50 ]; then
+                output_icon=''
+            else
+                output_icon=''
+            fi
+            output="${volume} ${output_icon}"
+        fi
+
+        printf '%s' "${output}"
+    else
+        # Remove delimiter when no audio is present.
+        tmux set-environment -g has_pulseaudio 0
+    fi
+}
+
+_network_stats() {
+    interfaces="$(\
+        find /sys/class/net/ -type l \
+        | rev \
+        | cut -d '/' -f 1 \
+        | rev \
+        )"
+    output='No network!'
+    wifi_icon=''
+    ethernet_icon=''
+    
+    for interface in ${interfaces}; do
+        interface_path="/sys/class/net/${interface}"
+        devtype="$(grep DEVTYPE "${interface_path}/uevent" | cut -d '=' -f 2)"
+        status="$(cat "${interface_path}/carrier")"
+        if [ "${devtype}" = 'wlan' ] || [ "${devtype}"  = 'ethernet' ]; then
+            if [ "${status}" -eq 1 ]; then
+                # Display delimiter when no network is online.
+                tmux set-environment -g has_network 1
+
+                ip="$(ip addr show "${interface}" \
+                    | awk '/inet [1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}\.[1-9]{,3}/ {print $2}' \
+                    | cut -d '/' -f 1 \
+                    )"
+                if echo "${interface}" | grep -qE '^(wlp)'; then
+                    output="${ip} ${wifi_icon}"
+                elif echo "${interface}" | grep -qE '^(enp)'; then
+                    output=${ip} "${ethernet_icon}"
+                fi
+            fi
+        fi
+    done
+
+    # Use xargs to strip whitespace.
+    printf '%s' "$(echo "${output}" | xargs)"
+}
+
 "$@"
