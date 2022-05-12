@@ -151,6 +151,17 @@ only applies to remote sessions stick to
 - For local and remote settings stick to `.tmux.conf.local`
 - For settings that apply to ssh sessions only stick to `.tmux.conf.remote`
 
+To ignore changes you make to those files you can make git ignore these files
+until you revert that change. To do so do the following:
+
+```bash
+git update-index --skip-worktree tmux/.tmux.conf.local
+git update-index --skip-worktree tmux/.tmux.conf.remote
+```
+
+For more information see [this stackoverflow
+post](https://stackoverflow.com/questions/4348590/how-can-i-make-git-ignore-future-revisions-to-a-file).
+
 ### Custom Functions
 
 All functions that reside in [.tmux.conf](./tmux/.tmux.conf) can be overwritten.
