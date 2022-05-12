@@ -38,6 +38,10 @@ The different parts of the configuration are explained down below.
 
 Nice to have you. I hope you can use any of this.
 
+<br>
+<br>
+<br>
+
 ## Features
 
 ### Enabled TMUX Features
