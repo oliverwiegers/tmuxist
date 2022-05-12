@@ -13,9 +13,10 @@ unbind -T off F12
 # Change status position.
 set-option -g status-position top
 
-# https://gist.github.com/admackin/4507371
 # Fix ssh agent when tmux is detached.
-# See .ssh/rc for socket linking.
+# Update .ssh/rc for socket linking.
+# See "Remote SSH Configuration" section in the README.md
+# For more information see: https://gist.github.com/admackin/4507371
 set -g update-environment -r
 setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 

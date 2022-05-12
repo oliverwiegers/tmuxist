@@ -24,20 +24,7 @@
 # /_/   /_/\__,_/\__, /_/_/ /_/____/  
 #               /____/                
 
-# Load Plugins. ================================================================
-#
-run-shell ~/.tmuxist/plugins/tmux-resurrect/resurrect.tmux
-run-shell ~/.tmuxist/plugins/tmux-continuum/continuum.tmux
-
-# Plugins Settings. ============================================================
-
-# Ressurect.
-set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-processes 'ssh newsboat bluetoothctl neomutt'
-set -g @resurrect-hook-post-save-all 'remove_old_tmux_sessions.sh'
-
-# Continuum.
-set -g @continuum-restore 'on'
+# No custom plugins yet.
 
 #     ______                 _   _
 #    / ____/_  ______  _____/ /_(_)___  ____ 
@@ -50,41 +37,25 @@ set -g @continuum-restore 'on'
 # / /_/ / |/ /  __/ /  / /  / / /_/ /  __(__  ) 
 # \____/|___/\___/_/  /_/  /_/\__,_/\___/____/  
 
+# No custom function overrides yet.
+
 # EOF
-#
-# _username_override() {
-#     tty=${1:-}
-#     if [ "$(ps -t "${tty}" -o user=WIDEOUTPUTFORLONGNAME -o pid= -o ppid= -o command= | awk '((/gove / || /govps /))')" ]; then
-#         username='root'
-#         printf '%s' "${username}"
-#     else
-#         tty_stats="$(_tty_stats "${tty}")"
-#         username="${tty_stats#*:}"
-#         cmdline="${username#*:}"
-#         username="${username%%:*}"
-#         if _is_ssh "${cmdline}";then
-#             ssh_stats="$(_ssh_stats "${cmdline}")"
-#             printf '%s' "${ssh_stats%%:*}"
-#         else
-#             printf '%s' "${username}"
-#         fi
-#     fi
-# }
-#
-# _hostname_override() {
-#     tty=${1:-}
-#     hostname="$(ps -t "${tty}" -o user=WIDEOUTPUTFORLONGNAME -o pid= -o ppid= -o command= | awk '((/gove / || /govps /)) {print $6}')"
-#     if [ -n "${hostname}" ]; then
-#         printf '%s' "${hostname}"
-#     else
-#         tty_stats="$(_tty_stats "${tty}")"
-#         cmdline="${tty_stats#*:}"
-#         cmdline="${cmdline#*:}"
-#         if _is_ssh "${cmdline}";then
-#             ssh_stats="$(_ssh_stats "${cmdline}")"
-#             printf '%s' "${ssh_stats##*:}"
-#         else
-#             printf '%s' "$(uname -n)"
-#         fi
-#     fi
-# }
+# # Example override function.
+# # For the following to take effect the start "# #" needs to be replaced with "# ".
+# #_hostname_override() {
+# #    tty=${1:-}
+# #    hostname="$(ps -t "${tty}" -o user=WIDEOUTPUTFORLONGNAME -o pid= -o ppid= -o command= | awk '((/govm / || /gove /)) {print $6}')"
+# #    if [ -n "${hostname}" ]; then
+# #        printf '%s' "${hostname}"
+# #    else
+# #        tty_stats="$(_tty_stats "${tty}")"
+# #        cmdline="${tty_stats#*:}"
+# #        cmdline="${cmdline#*:}"
+# #        if _is_ssh "${cmdline}";then
+# #            ssh_stats="$(_ssh_stats "${cmdline}")"
+# #            printf '%s' "${ssh_stats##*:}"
+# #        else
+# #            printf '%s' "$(uname -n)"
+# #        fi
+# #    fi
+# #}
