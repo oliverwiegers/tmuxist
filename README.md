@@ -18,10 +18,20 @@ section](#plugins).
 
 ## Visuals
 
-In my setting the colors are tweaked to look like
-[gruvbox](https://github.com/morhetz/gruvbox).
+<img src="./shots/local_session.png" alt="img" align="right" width="400px">
+<img src="./shots/remote_session.png" alt="img" align="right" width="400px">
 
-![Screenshot](shots/tmux.png)
+The top image is a screenshot of tmux with only a local session open.
+
+The lower image is a screenshot of tmux running a local session with a nested
+remote session.
+On the right side of the lower status bar the remote keymap indicator can be
+seen.
+This tells you that the local prefix key is deativated and if pressed is
+directly picked up by the remote session.
+
+The colors are tweaked to resemble the 
+[gruvbox](https://github.com/morhetz/gruvbox) theme.
 
 ## Features
 
@@ -33,7 +43,7 @@ In my setting the colors are tweaked to look like
 ### Custom Features
 
 - [Urlview](https://github.com/sigpipe/urlview) to open URLs in Browser
-- Pane sync indicator
+- Pane sync indicator ![img](./shots/sync_indicator.png "Sync indicator")
 - Hostname / Username indicator
   - Turns red if User is root
 - Nested remote session awareness
@@ -58,7 +68,10 @@ local system.
   remote session
 
 On the left side of status-right left from the sync indicator is an indicator
-that tells you wether the keymap is turnded on or off.
+that tells you wether the keymap is turnded on or off. The indicator looks like
+the following:
+
+![img](./shots/remote_indicator.png "Remote indicator")
 
 ### Plugins
 
