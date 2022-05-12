@@ -25,6 +25,7 @@ The top image is a screenshot of tmux with only a local session open.
 
 The lower image is a screenshot of tmux running a local session with a nested
 remote session.
+
 On the right side of the lower status bar the remote keymap indicator can be
 seen.
 This tells you that the local prefix key is deativated and if pressed is
@@ -33,7 +34,9 @@ directly picked up by the remote session.
 The colors are tweaked to resemble the 
 [gruvbox](https://github.com/morhetz/gruvbox) theme.
 
-<hr>
+The different parts of the configuration are explained down below.
+
+Nice to have you. I hope you can use any of this.
 
 ## Features
 
