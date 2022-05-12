@@ -33,6 +33,8 @@ directly picked up by the remote session.
 The colors are tweaked to resemble the 
 [gruvbox](https://github.com/morhetz/gruvbox) theme.
 
+<hr>
+
 ## Features
 
 ### Enabled TMUX Features
@@ -43,11 +45,13 @@ The colors are tweaked to resemble the
 ### Custom Features
 
 - [Urlview](https://github.com/sigpipe/urlview) to open URLs in Browser
-- Pane sync indicator ![img](./shots/sync_indicator.png "Sync indicator")
+- Pane sync indicator
+  - ![img](./shots/sync_indicator.png "Sync indicator")
 - Hostname / Username indicator
   - Turns red if User is root
 - Nested remote session awareness
   - Indicator if remote keymap is active
+    - ![img](./shots/remote_indicator.png "Remote indicator")
   - Local keymap can be disabled to issue commands to remote session
 - For local tmux instance:
   - Network status / local IP
@@ -70,8 +74,6 @@ local system.
 On the left side of status-right left from the sync indicator is an indicator
 that tells you wether the keymap is turnded on or off. The indicator looks like
 the following:
-
-![img](./shots/remote_indicator.png "Remote indicator")
 
 ### Plugins
 
