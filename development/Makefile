@@ -1,16 +1,16 @@
 dev:
-	cp ../tmux/.tmux.conf ./tmux.config
-	cut -c3- ./tmux.config | sed '0,/^EOF$$/d' > ./custom_functions.sh
-	sed '1,/^# EOF$$/!d' ./tmux.config > ./tmux.conf
+	cp ../tmux/.tmux.conf ./whole_file
+	cut -c3- ./whole_file | sed '0,/^EOF$$/d' > ./custom_functions.sh
+	sed '1,/^# EOF$$/!d' ./whole_file > ./tmux.conf
 
 build:
-	cat ./tmux.conf > ./tmux.config
-	sed 's/^/# /g;s/^# $$/#/g;' custom_functions.sh >> ./tmux.config
+	cat ./tmux.conf > ./whole_file
+	sed 's/^/# /g;s/^# $$/#/g;' custom_functions.sh >> ./whole_file
 
 deploy:
-	cat ./tmux.conf > ./tmux.config
-	sed 's/^/# /g;s/^# $$/#/g;' custom_functions.sh >> ./tmux.config
-	cp ./tmux.config ../tmux/.tmux.conf
+	cat ./tmux.conf > ./whole_file
+	sed 's/^/# /g;s/^# $$/#/g;' custom_functions.sh >> ./whole_file
+	cp ./whole_file ../tmux/.tmux.conf
 
 cleanup:
-	rm ./tmux.conf ./tmux.config ./custom_functions.sh
+	rm ./tmux.conf ./whole_file ./custom_functions.sh
