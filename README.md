@@ -52,6 +52,7 @@ Nice to have you. I hope you can use any of this.
 ### Custom Features
 
 - [Urlview](https://github.com/sigpipe/urlview) to open URLs in Browser
+  - urlview needs to be installed for this to work
 - Pane sync indicator
   - ![img](./shots/sync_indicator.png "Sync indicator")
 - Hostname / Username indicator
@@ -154,6 +155,16 @@ tmux
 # 256 color support
 tmux -2
 ```
+
+### Needed Packages
+
+For the status bar components to work properly following packages need to be
+installed:
+
+- awk
+- ffmpeg
+- notify-send
+- pactl
 
 ## Configuration
 
