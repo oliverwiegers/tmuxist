@@ -5,11 +5,11 @@ disable the local prefix key by pressing F12 to use the prefix key for the
 remote session.
 
 *Disclaimer:* This config -> [gpakosz/.tmux](https://github.com/gpakosz/.tmux)
-is a great peace of work. All features contained in this repositories config
+is a great piece of work. All features contained in this repository's config
 are contained in the config made by gpakosz. Including fancy animations and many
 more features useful for local tmux sessions. If that's what you're looking for
 give that config a try.
-The main feature of this repositories config that sets the both apart is the
+The main feature of this repository's config that sets both apart is the
 remote session awareness.
 
 The configuration and custom functions are mostly selfcontained. Nonetheless the
@@ -80,7 +80,7 @@ local system.
   remote session
 
 On the left side of status-right left from the sync indicator is an indicator
-that tells you wether the keymap is turnded on or off. The indicator looks like
+that tells you whether the keymap is turnded on or off. The indicator looks like
 the following:
 
 ### Plugins
@@ -106,7 +106,7 @@ the following:
 - `<prefix> v` split vertically
 - `<prefix> -` split horizontally
 - `<prefix> x` kill current pane
-- `<prefix> S` syncronize panes in window
+- `<prefix> S` synchronize panes in window
 - `<prefix> c` create new window
 - `<prefix> Tab` focus last window
 - `<prefix> Enter` enter copy mode
