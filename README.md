@@ -65,7 +65,7 @@ Nice to have you. I hope you can use any of this.
   - Network status / local IP
   - Battery status
   - Pulseaudio volume
-- SSH Agent restoring on rempote host
+- SSH Agent restoring on remote host
 - Copy to system clipboard
 - Paste from system clipboard
 
