@@ -146,7 +146,7 @@ cd .tmuxist/
 stow tmux
 ```
 
-Than start tmux :)
+Then start tmux :)
 
 ```bash
 # General
@@ -154,6 +154,15 @@ tmux
 
 # 256 color support
 tmux -2
+```
+
+### Nix
+
+There is a [flake.nix](./flake.nix) so you can install it using nix / home-manager
+or run it directly from the repo.
+
+```bash
+nix run github:oliverwiegers/.tmuxist
 ```
 
 ### Needed Packages
@@ -164,7 +173,7 @@ installed:
 - awk
 - ffmpeg
 - notify-send
-- pactl
+- pactl / wpctl
 
 ## Configuration
 
