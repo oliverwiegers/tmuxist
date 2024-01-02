@@ -1,4 +1,4 @@
-# .tmuxist
+# tmuxist
 
 Tmux configuration to use local and remote sessions nested. It is possible to
 disable the local prefix key by pressing F12 to use the prefix key for the
@@ -133,7 +133,7 @@ You can simply use the install script to create some symlinks.
 
 ```bash
 cd ~
-git clone --recursive https://github.com/chrootzius/.tmuxist.git
+git clone --recursive https://github.com/chrootzius/.tmuxist.git ~/.tmuxist
 ./.tmuxist/install.sh
 ```
 
@@ -141,7 +141,7 @@ Or you can use fancy gnu stow (which does pretty much the same)
 
 ```bash
 cd ~
-git clone --recursive https://github.com/chrootzius/.tmuxist.git
+git clone --recursive https://github.com/chrootzius/.tmuxist.git ~/.tmuxist
 cd .tmuxist/
 stow tmux
 ```
@@ -162,7 +162,7 @@ There is a [flake.nix](./flake.nix) so you can install it using nix / home-manag
 or run it directly from the repo.
 
 ```bash
-nix run github:oliverwiegers/.tmuxist
+nix run github:oliverwiegers/tmuxist
 ```
 
 ### Needed Packages
@@ -285,7 +285,7 @@ config and the bash code for the custom functions.
 This makes it possible to tweak the bash code in normal fashion.
 
 ```bash
-git clone --recursive https://github.com/chrootzius/.tmuxist.git
-cd .tmuxist/development
+git clone --recursive https://github.com/chrootzius/.tmuxist.git ~/.tmuxist
+cd ~/.tmuxist/development
 make dev
 ```

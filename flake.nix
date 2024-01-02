@@ -1,5 +1,5 @@
 {
-  description = ".tmuxist - Self contained tmux poweruser config. Including remote awereness for nesting.";
+  description = "tmuxist - Self contained tmux poweruser config. Including remote awereness for nesting.";
 
   inputs = {
     nixpkgs = {
@@ -22,23 +22,29 @@
           inherit system;
         };
 
-        tmuxConfig = pkgs.writeText "tmux.conf" (builtins.readFile ./tmux/.tmux.conf);
-
         plugins = import ./plugins.nix {inherit pkgs;};
-        pluginsPath = pkgs.lib.makeBinPath plugins;
+        dependencies = import ./dependencies.nix {inherit pkgs;};
 
-        tmux-unwrapped = pkgs.tmux.overrideAttrs (oldAttrs: {
-          buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ pkgs.makeWrapper ];
+        pluginConfig = pkgs.lib.concatMapStringsSep "\n" (plugin: "run-shell ${plugin.rtp}") plugins;
 
-          postInstall = (oldAttrs.postInstall or "") + ''
-            mkdir $out/libexec
+        # Replace plugin config for installation using git with plugin config this flake.
+        tmuxConfig =
+          builtins.replaceStrings
+          ["# NIX PLUGIN CONFIG PLACEHOLDER" "run-shell ~/"]
+          [pluginConfig "# run-shell ~/"]
+          (builtins.readFile ./tmux/.tmux.conf);
+        tmuxConfigPath = pkgs.writeText "tmux.conf" tmuxConfig;
 
-            mv $out/bin/tmux $out/libexec/tmux-unwrapped
+        tmuxWrapped = pkgs.tmux.overrideAttrs (oldAttrs: {
+          buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.makeWrapper pkgs.gnused];
 
-            makeWrapper $out/libexec/tmux-unwrapped $out/bin/tmux \
-                --add-flags "-f ${tmuxConfig}" \
-                --prefix PATH : "${pluginsPath}"
-          '';
+          postInstall =
+            (oldAttrs.postInstall or "")
+            + ''
+              wrapProgram $out/bin/tmux \
+                  --add-flags "-f ${tmuxConfigPath}" \
+                  --prefix PATH : "${pkgs.lib.makeBinPath dependencies}"
+            '';
         });
       in rec {
         formatter = pkgs.alejandra;
@@ -52,7 +58,7 @@
         };
 
         # Use wrapper to add plugins and custom configuration.
-        packages.tmux = tmux-unwrapped;
+        packages.tmux = tmuxWrapped;
       }
     );
 }
