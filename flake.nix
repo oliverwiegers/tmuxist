@@ -36,7 +36,7 @@
         tmuxConfigPath = pkgs.writeText "tmux.conf" tmuxConfig;
 
         tmuxWrapped = pkgs.tmux.overrideAttrs (oldAttrs: {
-          buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.makeWrapper pkgs.gnused];
+          buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.makeWrapper];
 
           postInstall =
             (oldAttrs.postInstall or "")
