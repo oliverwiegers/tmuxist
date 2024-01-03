@@ -5,3 +5,4 @@ development/custom_functions.sh
 build/
 result
 result-man
+.direnv/

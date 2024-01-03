@@ -28,10 +28,10 @@ remote session.
 
 On the right side of the lower status bar the remote keymap indicator can be
 seen.
-This tells you that the local prefix key is deativated and if pressed is
+This tells you that the local prefix key is deactivated and if pressed is
 directly picked up by the remote session.
 
-The colors are tweaked to resemble the 
+The colors are tweaked to resemble the
 [gruvbox](https://github.com/morhetz/gruvbox) theme.
 
 The different parts of the configuration are explained down below.
@@ -76,11 +76,11 @@ local system.
 
 - Same keybindings
 - Remote status bar on top / local status bar on bottom
-- `F12` as toogle key for the local keymap so every keystroke is send to the
+- `F12` as toggle key for the local keymap so every keystroke is send to the
   remote session
 
 On the left side of status-right left from the sync indicator is an indicator
-that tells you wether the keymap is turnded on or off. The indicator looks like
+that tells you whether the keymap is turnded on or off. The indicator looks like
 the following:
 
 ### Plugins
@@ -106,7 +106,7 @@ the following:
 - `<prefix> v` split vertically
 - `<prefix> -` split horizontally
 - `<prefix> x` kill current pane
-- `<prefix> S` syncronize panes in window
+- `<prefix> S` synchronize panes in window
 - `<prefix> c` create new window
 - `<prefix> Tab` focus last window
 - `<prefix> Enter` enter copy mode
@@ -177,7 +177,7 @@ installed:
 
 ## Configuration
 
-**Do not unter any circumstances edit [.tmux.conf](./tmux/.tmux.conf).**
+**Do not under any circumstances edit [.tmux.conf](./tmux/.tmux.conf).**
 
 To override any settings and functions or add anything to the configuration
 stick to [.tmux.conf.local](./tmux/.tmux.conf.local) for changes to apply to
@@ -211,8 +211,8 @@ This is especially useful if you use proprietary tools for example in house
 solutions for connection to remote hosts.
 
 To override a function add a function with the function name added with
-`_override` to [.tmux.conf.local](./tmux/.tmux.conf.local). For exmaple To
-override the `_hostname` funtion add the function `_hostname_override`.
+`_override` to [.tmux.conf.local](./tmux/.tmux.conf.local). For example To
+override the `_hostname` function add the function `_hostname_override`.
 
 In the default hostname / username functions used to display those in the status
 bar the ssh connections are taken into account. This does of course not work if
@@ -246,7 +246,7 @@ containers into account.
 
 In [.tmux.conf.remote](./tmux/.tmux.conf.remote) the `SSH_AUTH_SOCK` tmux
 environment variable is set to `$HOME/.ssh/ssh_auth_sock`. This is needed so
-tmux uses the same ssh socket everytime.
+tmux uses the same ssh socket every time.
 Meaning if your ssh connection to the remote target is lost and you reconnect,
 your ssh agent uses still the right socket and is operational.
 
@@ -267,7 +267,7 @@ hast to be:
 ```
 
 As long as you do this your ssh connection can break all it wants and you can
-reconnect everytime resulting in a working ssh agent on the remote target.
+reconnect every time resulting in a working ssh agent on the remote target.
 
 ## Testing
 

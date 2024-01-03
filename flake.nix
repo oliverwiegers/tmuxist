@@ -47,18 +47,29 @@
             '';
         });
       in rec {
-        formatter = pkgs.alejandra;
-
-        defaultApp = apps.tmux;
-        defaultPackage = packages.tmux;
+        # Use wrapper to add plugins and custom configuration.
+        packages.tmux = tmuxWrapped;
 
         apps.tmux = {
           type = "app";
           program = "${defaultPackage}/bin/tmux";
         };
 
-        # Use wrapper to add plugins and custom configuration.
-        packages.tmux = tmuxWrapped;
+        defaultApp = apps.tmux;
+        defaultPackage = packages.tmux;
+
+        formatter = pkgs.alejandra;
+
+        devShells = {
+          default = pkgs.mkShell {
+            NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
+            nativeBuildInputs = with pkgs; [
+              git
+              pre-commit
+              ruby
+            ];
+          };
+        };
       }
     );
 }
