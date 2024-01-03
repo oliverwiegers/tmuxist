@@ -27,7 +27,7 @@
 
         pluginConfig = pkgs.lib.concatMapStringsSep "\n" (plugin: "run-shell ${plugin.rtp}") plugins;
 
-        # Replace plugin config for installation using git with plugin config this flake.
+        # Replace plugin config for installation using git with plugin config using this flake.
         tmuxConfig =
           builtins.replaceStrings
           ["# NIX PLUGIN CONFIG PLACEHOLDER" "run-shell ~/"]
