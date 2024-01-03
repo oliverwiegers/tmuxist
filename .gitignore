@@ -3,3 +3,5 @@ development/whole_file
 development/custom_functions.sh
 *.swp
 build/
+result
+result-man
