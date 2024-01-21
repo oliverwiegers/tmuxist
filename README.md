@@ -44,6 +44,11 @@ Nice to have you. I hope you can use any of this.
 
 ## Features
 
+### OS Support
+
+- Linux
+- MacOS
+
 ### Enabled TMUX Features
 
 - Emacs bindings in command mode.
