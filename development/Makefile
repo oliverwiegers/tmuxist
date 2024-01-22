@@ -12,5 +12,7 @@ deploy:
 	sed 's/^/# /g;s/^# $$/#/g;' custom_functions.sh >> ./whole_file
 	cp ./whole_file ../tmux/.tmux.conf
 
+install: build deploy
+
 cleanup:
 	rm ./tmux.conf ./whole_file ./custom_functions.sh

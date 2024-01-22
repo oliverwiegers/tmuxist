@@ -2,4 +2,5 @@
 with pkgs; [
   gawk
   libnotify
+  ffmpeg
 ]
