@@ -5,11 +5,11 @@ disable the local prefix key by pressing F12 to use the prefix key for the
 remote session.
 
 *Disclaimer:* This config -> [gpakosz/.tmux](https://github.com/gpakosz/.tmux)
-is a great peace of work. All features contained in this repositories config
+is a great piece of work. All features contained in this repository's config
 are contained in the config made by gpakosz. Including fancy animations and many
 more features useful for local tmux sessions. If that's what you're looking for
 give that config a try.
-The main feature of this repositories config that sets the both apart is the
+The main feature of this repository's config that sets both apart is the
 remote session awareness.
 
 The configuration and custom functions are mostly selfcontained. Nonetheless the
@@ -70,7 +70,7 @@ Nice to have you. I hope you can use any of this.
   - Network status / local IP
   - Battery status
   - Pulseaudio volume
-- SSH Agent restoring on rempote host
+- SSH Agent restoring on remote host
 - Copy to system clipboard
 - Paste from system clipboard
 
