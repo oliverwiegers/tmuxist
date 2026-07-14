@@ -12,10 +12,6 @@ give that config a try.
 The main feature of this repository's config that sets both apart is the
 remote session awareness.
 
-The configuration and custom functions are mostly selfcontained. Nonetheless the
-config uses plugins to manage sessions. For more information see the [plugins
-section](#plugins).
-
 ## Visuals
 
 <img src="./shots/local_session.png" alt="img" align="right" width="400px">
@@ -94,6 +90,8 @@ the following:
   management.
 - [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) for automatic
   session saving.
+- [tmux-urlview](https://github.com/tmux-plugins/tmux-urlview)
+- [tmux-fzf](https://github.com/sainnhe/tmux-fzf)
 
 ### Custom Keybindings
 
