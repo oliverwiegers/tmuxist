@@ -4,4 +4,5 @@ with pkgs.tmuxPlugins; [
   continuum
   tmux-fzf
   urlview
+  extrakto
 ]
